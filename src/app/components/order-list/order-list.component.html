@@ -11,7 +11,11 @@
   <tbody *ngFor="let item of orders">
     <tr ng-repeat="cart in carts">
       <td>{{ item.id }}</td>
-      <td>5</td>
+      <td>
+        <ul *ngFor="let item of item.flowers">
+          <li>{{ item.name }} : {{ item.quantity }}</li>
+        </ul>
+      </td>
       <td>500</td>
       <td>
         <button
