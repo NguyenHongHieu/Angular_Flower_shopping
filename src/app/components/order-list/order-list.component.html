@@ -1,51 +1,27 @@
 <h3 class="text-center"><i class="fas fa-shopping-bag"></i> Order list</h3>
 <table class="table table-bordered table-striped">
-  <tr>
-    <th width="20%">Order ID</th>
-    <th width="20%">Quantity</th>
-    <th width="30%">Total</th>
-    <th width="30%">Action</th>
-  </tr>
-  <tr ng-repeat="cart in carts">
-    <td>#01</td>
-    <td>5</td>
-    <td>500</td>
-    <td>
-      <button
-        type="button"
-        name="remove_product"
-        class="btn btn-primary btn-xs"
-      >
-        <a href="order-detail.html">View Detail</a>
-      </button>
-    </td>
-  </tr>
-  <tr ng-repeat="cart in carts">
-    <td>#02</td>
-    <td>5</td>
-    <td>500</td>
-    <td>
-      <button
-        type="button"
-        name="remove_product"
-        class="btn btn-primary btn-xs"
-      >
-        View Detail
-      </button>
-    </td>
-  </tr>
-  <tr ng-repeat="cart in carts">
-    <td>#03</td>
-    <td>5</td>
-    <td>500</td>
-    <td>
-      <button
-        type="button"
-        name="remove_product"
-        class="btn btn-primary btn-xs"
-      >
-        View Detail
-      </button>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th width="20%">Order ID</th>
+      <th width="20%">Quantity</th>
+      <th width="30%">Total</th>
+      <th width="30%">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of orders">
+    <tr ng-repeat="cart in carts">
+      <td>{{ item.id }}</td>
+      <td>5</td>
+      <td>500</td>
+      <td>
+        <button
+          type="button"
+          name="remove_product"
+          class="btn btn-primary btn-xs"
+        >
+          <a href="order-detail.html">View Detail</a>
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
