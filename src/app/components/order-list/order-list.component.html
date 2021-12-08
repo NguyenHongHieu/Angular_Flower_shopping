@@ -18,13 +18,16 @@
       </td>
       <td>500</td>
       <td>
-        <button
+        <!-- <button
           type="button"
           name="remove_product"
           class="btn btn-primary btn-xs"
         >
-          <a href="order-detail.html">View Detail</a>
-        </button>
+          View Detail
+        </button> -->
+        <a class="btn btn-primary" [href]="'order-detail/' + item.id">
+          View Detail
+        </a>
       </td>
     </tr>
   </tbody>
