@@ -1,0 +1,131 @@
+<h3 class="text-center">
+  <i class="fas fa-shopping-bag"></i> Your Bag Details
+</h3>
+<div class="table-responsive" id="order_table">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="40%">Product Name</th>
+        <th width="10%">Quantity</th>
+        <th width="20%">Price</th>
+        <th width="15%">Total</th>
+        <th width="5%">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of flowerBuys">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency: "USD":true }}</td>
+        <td>{{ item.quantity * item.price | currency: "USD":true }}</td>
+        <td>
+          <button
+            (click)="removeFlowerInBag(item.id)"
+            type="button"
+            name="remove_product"
+            class="btn btn-danger btn-xs"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right">Total</td>
+        <td colspan="2">
+          {{ flowerBuys | calculateTotal | currency: "USD":true }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding-bottom: 3%">
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      value="order"
+      name="order"
+      [disabled]="flowerBuys.length == 0"
+    >
+      Order Now
+    </button>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Order Info</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="buy.php"
+            method="POST"
+            enctype="multipart/form-data"
+            autocomplete="off"
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                aria-describedby="emailHelp"
+                name="name"
+                required
+                [(ngModel)]="user.name"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Enter Full name.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile Number</label>
+              <input
+                type="Number"
+                class="form-control"
+                id="mobile"
+                name="mobile"
+                [(ngModel)]="user.phone"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              value="Click"
+              id="electrician"
+              name="submit"
+              class="btn btn-primary"
+              (click)="submitOrder()"
+            >
+              Order Now
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<simple-notifications></simple-notifications>

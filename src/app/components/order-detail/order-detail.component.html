@@ -1,0 +1,39 @@
+<h3 class="text-center">
+  <i class="fas fa-shopping-basket"></i> Order Details
+</h3>
+<h4>Order name : {{ order.name }}</h4>
+<div class="table-responsive" id="order_table">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th width="40%">Product Name</th>
+      <th width="10%">Quantity</th>
+      <th width="20%">Price</th>
+      <th width="15%">Total</th>
+    </tr>
+    <tr ng-repeat="cart in carts" *ngFor="let item of flowers">
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price | currency: "USD":true }}</td>
+      <td>{{ item.quantity * item.price | currency: "USD":true }}</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="right">Total</td>
+      <td colspan="2">
+        {{ flowers | calculateTotal | currency: "USD":true }}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div style="padding-bottom: 3%">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModalCenter"
+    value="order"
+    name="order"
+  >
+    Back
+  </button>
+</div>
