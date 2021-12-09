@@ -22,6 +22,8 @@ import { UserService } from './services/user.service';
 import { UserGuard } from './services/guards/user.guard';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { ContactComponent } from './contact/contact.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -50,6 +52,14 @@ const appRoutes: Routes = [
     component: BagComponent,
   },
   {
+    path: 'about-me',
+    component: AboutMeComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
@@ -65,7 +75,9 @@ const appRoutes: Routes = [
     ProductsComponent,
     CaculateTotalPipe,
     OrderDetailComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AboutMeComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ export class FlowerService {
     new Flower(2, 'Fabric flowers', 10, 15, 'https://bit.ly/3Ir8jQ1'),
     new Flower(3, 'Sun Flower', 20, 15, 'https://bit.ly/31ANmkx'),
     new Flower(4, 'Blue Flower', 100, 15, 'https://bit.ly/3hyvKL5'),
-    new Flower(5, 'Lotus flower', 150, 10, 'https://bit.ly/3y9c87t'),
+    new Flower(5, 'Lotus flower', 150, 10, 'https://bit.ly/3dwuaav'),
     new Flower(6, 'Confetti flower', 120, 50, 'https://bit.ly/3Gp0XdT'),
     new Flower(7, 'Buttercup flower', 110, 20, 'https://bit.ly/3IvGpCs'),
     new Flower(8, 'Marigold flower', 180, 10, 'https://bit.ly/3y5EaAS'),
