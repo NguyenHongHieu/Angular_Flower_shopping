@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Flower } from '../models/flower.class';
+// import { Flower } from '../new-modules/models/flower.class';
+import {Flower} from '../new-modules/models/flower.class'
 import { FlowerService } from '../services/flower.service';
 @Pipe({
   name: 'calculateTotal',

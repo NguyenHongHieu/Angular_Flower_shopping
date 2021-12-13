@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Flower } from '../models/flower.class';
+import { Flower } from '../new-modules/models/flower.class';
 
 @Injectable({
   providedIn: 'root',

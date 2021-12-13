@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Flower } from '../models/flower.class';
-import { Order } from '../models/order.class';
-import { User } from '../models/user.class';
+import { Flower } from '../new-modules/models/flower.class';
+import { Order } from '../new-modules/models/order.class';
+import { User } from '../new-modules/models/user.class';
 
 @Injectable({
   providedIn: 'root'

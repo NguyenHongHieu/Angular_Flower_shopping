@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">{{ title }}</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/home']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home <span class="sr-only">(current)</span></a
+      >
+      <!-- <a class="nav-item nav-link" href="product_list(owner).html"
+        >Product list</a
+      > -->
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/product-list']"
+        routerLinkActive="active"
+        >Product list</a
+      >
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/orders']"
+        routerLinkActive="active"
+        >Order list</a
+      >
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/bag']"
+        routerLinkActive="active"
+        >Bag</a
+      >
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/about-me']"
+        routerLinkActive="active"
+        >About me</a
+      >
+      <a
+        class="nav-item nav-link"
+        [routerLink]="['/contact']"
+        routerLinkActive="active"
+        >Contact</a
+      >
+    </div>
+  </div>
+  <div class="navbar-collapse collapse order-3">
+    <ul class="navbar-nav ml-auto">
+      <ng-container *ngIf="!user; else logged">
+        <li>
+          <button
+            type="button"
+            class="btn btn-info mr-2"
+            (click)="loginOwner()"
+          >
+            Login with Owner
+          </button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-success" (click)="loginUser()">
+            Login with Customer
+          </button>
+        </li>
+      </ng-container>
+      <ng-template #logged>
+        <li>
+          <div class="text-warning mt-2 mr-2">Hello, {{ user.name }}</div>
+        </li>
+        <li>
+          <button type="button" class="btn btn-warning" (click)="logOut()">
+            Log out
+          </button>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

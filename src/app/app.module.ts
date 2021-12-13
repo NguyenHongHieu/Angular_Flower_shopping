@@ -8,22 +8,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { BagComponent } from './components/bag/bag.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { OrderListComponent } from './components/order-list/order-list.component';
+import { HeaderComponent } from './new-modules/flower-shop/header/header.component';
+import { HomeComponent } from './new-modules/flower-shop/home/home.component';
+import { BagComponent } from './new-modules/flower-shop/bag/bag.component';
+import { NotFoundComponent } from './new-modules/flower-shop/not-found/not-found.component';
+import { OrderListComponent } from './new-modules/flower-shop/order/order-list/order-list.component';
 import { FlowerService } from './services/flower.service';
-import { ProductsComponent } from './components/products/products.component';
+import { ProductsComponent } from './new-modules/flower-shop/product/products/products.component';
 import { CaculateTotalPipe } from './pipes/caculate-total.pipe';
 import { CallToastService } from './services/call-toast.service';
 import { OrderService } from './services/order.service';
 import { UserService } from './services/user.service';
-import { UserGuard } from './services/guards/user.guard';
-import { OrderDetailComponent } from './components/order-detail/order-detail.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { AboutMeComponent } from './about-me/about-me.component';
-import { ContactComponent } from './contact/contact.component';
+import { UserGuard } from './new-modules/admin/user/guards/user.guard';
+import { OrderDetailComponent } from './new-modules/flower-shop/order/order-detail/order-detail.component';
+import { AboutMeComponent } from './new-modules/flower-shop/about-me/about-me.component';
+import { ContactComponent } from './new-modules/flower-shop/contact/contact.component';
+import { ProductListComponent } from './new-modules/flower-shop/product/product-list/product-list.component';
+import { ViewDetailComponent } from './new-modules/flower-shop/product/view-detail/view-detail.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -34,9 +35,17 @@ const appRoutes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  // {
+  //   path: 'product-detail',
+  //   component: ProductDetailComponent,
+  // },
   {
-    path: 'product-detail',
-    component: ProductDetailComponent,
+    path:'product-list',
+    component: ProductListComponent,
+  },
+  {
+    path:'view-detail',
+    component: ViewDetailComponent,
   },
   {
     path: 'orders',
@@ -75,9 +84,10 @@ const appRoutes: Routes = [
     ProductsComponent,
     CaculateTotalPipe,
     OrderDetailComponent,
-    ProductDetailComponent,
     AboutMeComponent,
-    ContactComponent
+    ContactComponent,
+    ProductListComponent,
+    ViewDetailComponent
   ],
   imports: [
     BrowserModule,
