@@ -26,6 +26,7 @@ export class OrderListComponent implements OnInit {
    // return flowers.reduce((accumulator, item) => sum += item.price)
     
   }
+  
   // total2(){
   //   const orders = JSON.parse(localStorage.getItem('orders')) || [];
   //   if(!!orders.lenght) {

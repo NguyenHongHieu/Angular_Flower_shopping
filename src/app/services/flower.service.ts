@@ -34,6 +34,7 @@ export class FlowerService {
     var flower = this.flowers.find((x) => x.id === id);
     return flower.stock - numberBuy <= 0;
   }
-
-
+  findFlowersById(id : number){
+    return this.flowers.find(x => x.id === id);
+  }
 }

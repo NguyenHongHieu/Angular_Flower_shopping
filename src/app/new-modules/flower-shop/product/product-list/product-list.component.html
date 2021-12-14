@@ -1,9 +1,14 @@
 <div class="text-center font-weight-bold mb-5">
     <i class="fas fa-shopping-bag"></i>
     <a [routerLink]="['/bag']" routerLinkActive="router-link-active"
-      >YOUR BAG : {{ bags.length }}</a
-    >
+      >YOUR BAG : {{ bags.length }}</a>
   </div>
+  <div class="text-center mb-5">
+    <input type="text"placeholder="search"[(ngModel)]="name" (input)="search()">
+  </div>
+  <!-- <input [(ngModel)] = "searchTerm" (ngModelChange) = "search()"/> -->
+  
+  <!-- <div *ngFor = "let item of flowers">{{item.name}}</div> -->
   <div class="row clearfix">
     <div class="col-lg-3 col-md-3 col-sm-7" *ngFor="let item of flowers">
       <div class="card product_item">

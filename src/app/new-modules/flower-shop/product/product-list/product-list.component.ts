@@ -6,15 +6,16 @@ import { FlowerService } from '../../../../services/flower.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
   public flowers: Flower[] = [];
   public bags: number[] = [];
-  constructor( 
+  public name: string;
+  constructor(
     private _flowerService: FlowerService,
-    private _toastService: CallToastService) { 
-  }
+    private _toastService: CallToastService
+  ) {}
   @Output('idFlower')
   onHandleBags = new EventEmitter<number>();
   ngOnInit(): void {
@@ -24,7 +25,6 @@ export class ProductListComponent implements OnInit {
   }
   updateBag(id: number): void {
     // this.onHandleBags.emit(id);
-    //
     var numberItem = this.bags.filter((x) => x == id).length;
     var isOutOfStock = this._flowerService.IsOutOfStock(id, numberItem);
 
@@ -37,5 +37,16 @@ export class ProductListComponent implements OnInit {
     localStorage.setItem('bags', JSON.stringify(this.bags));
     this._toastService.success('Added', 1000);
   }
-
+ 
+  search() {
+    if (this.name != '') {
+      this.flowers = this.flowers.filter((res) => {
+        return res.name
+          .toLocaleLowerCase()
+          .match(this.name.toLocaleLowerCase());
+      });
+    } else if (this.name == '') {
+      this.ngOnInit();
+    }
+  }
 }

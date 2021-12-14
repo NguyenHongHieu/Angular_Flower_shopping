@@ -35,6 +35,10 @@ const appRoutes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./new-modules/admin/admin.module').then(m => m.AdminModule)
+  },
   // {
   //   path: 'product-detail',
   //   component: ProductDetailComponent,
