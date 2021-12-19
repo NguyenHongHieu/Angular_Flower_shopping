@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './new-modules/flower-shop/header/header.component';
@@ -43,23 +42,24 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     canActivate: [OwnerGuard],
-    loadChildren: () => import('./new-modules/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () =>
+      import('./new-modules/admin/admin.module').then((m) => m.AdminModule),
   },
   // {
   //   path: 'product-detail',
   //   component: ProductDetailComponent,
   // },
   {
-    path:'product-list',
+    path: 'product-list',
     component: ProductListComponent,
   },
   {
-    path:'view-detail',
+    path: 'view-detail/:id',
     component: ViewDetailComponent,
   },
   {
     path: 'orders',
-    canActivate : [UserGuard],
+    canActivate: [UserGuard],
     component: OrderListComponent,
   },
   {
@@ -68,7 +68,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'bag',
-    canActivate : [UserGuard],
+    // canActivate : [UserGuard],
     component: BagComponent,
   },
   // {
@@ -104,7 +104,7 @@ const appRoutes: Routes = [
     ProductListComponent,
     ViewDetailComponent,
     CaculateTotalPipe,
-    OrderInfoComponent
+    OrderInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +113,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     SimpleNotificationsModule.forRoot(),
-    RouterModule.forRoot(appRoutes)],
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

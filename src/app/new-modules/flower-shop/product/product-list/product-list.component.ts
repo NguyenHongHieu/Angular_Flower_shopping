@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
     localStorage.setItem('bags', JSON.stringify(this.bags));
     this._toastService.success('Added', 1000);
   }
- 
+
   search() {
     if (this.name != '') {
       this.flowers = this.flowers.filter((res) => {

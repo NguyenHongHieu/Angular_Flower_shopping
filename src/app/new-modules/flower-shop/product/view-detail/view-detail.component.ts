@@ -16,13 +16,14 @@ export class ViewDetailComponent implements OnInit {
   constructor(
     private _activateRouteService: ActivatedRoute,
     private _flowerService: FlowerService
-  )
-  {}
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this._activateRouteService.params.subscribe((data) => {
       let id = data['id'];
+      console.log('🚀 ~ id', id);
       this.product = this._flowerService.findFlowersById(+id);
+      console.log('🚀 ~ this.product', this.product);
     });
   }
   ngOnDestroy(): void {
