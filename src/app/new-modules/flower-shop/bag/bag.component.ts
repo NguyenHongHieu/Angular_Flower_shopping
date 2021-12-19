@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CallToastService } from '../../../services/call-toast.service';
 import { Flower } from '../../models/flower.class';
-import { FlowerService } from '../../../services/flower.service';
 import { User } from '../../models/user.class';
-import { UserService } from 'src/app/services/user.service';
 import { Order } from '../../models/order.class';
-import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+import { FlowerService } from 'src/app/shared/services/flower.service';
+import { CallToastService } from 'src/app/shared/services/call-toast.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-bag',

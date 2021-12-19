@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { CallToastService } from 'src/app/shared/services/call-toast.service';
+import { FlowerService } from 'src/app/shared/services/flower.service';
 import { Flower } from '../../../models/flower.class';
-import { CallToastService } from '../../../../services/call-toast.service';
-import { FlowerService } from '../../../../services/flower.service';
 
 @Component({
   selector: 'app-product-list',

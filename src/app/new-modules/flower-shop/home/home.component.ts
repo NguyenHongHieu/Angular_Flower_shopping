@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FlowerService } from '../../../services/flower.service';
-import { CallToastService } from '../../../services/call-toast.service';
+import { CallToastService } from 'src/app/shared/services/call-toast.service';
+import { FlowerService } from 'src/app/shared/services/flower.service';
 
 @Component({
   selector: 'app-home',

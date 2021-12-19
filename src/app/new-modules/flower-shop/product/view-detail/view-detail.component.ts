@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FlowerService } from 'src/app/services/flower.service';
+import { FlowerService } from 'src/app/shared/services/flower.service';
 import { Flower } from '../../../models/flower.class';
 @Component({
   selector: 'app-view-detail',
