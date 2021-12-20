@@ -7,7 +7,16 @@ import { User } from '../../new-modules/models/user.class';
   providedIn: 'root'
 })
 export class OrderService {
-  private user = new User(3,'Hieu',"Hieu","123",'0777903474',true);
+  
+  isOwner:true
+  private user = new User({
+    id:3,
+    name:"Hieu",
+    username:"Hieu",
+    password:"123",
+    phone:"0345265550",
+    isOwner:true
+  });
   private flowers = [
     new Flower(1, 'Rose', 15, 2, 'https://bit.ly/3tFtFSJ'),
     new Flower(2, 'Confetti', 10, 1, 'https://bit.ly/3tKs65I')

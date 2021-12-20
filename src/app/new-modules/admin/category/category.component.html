@@ -1,26 +1,25 @@
 <div class="text-center mb-5">
-  <!-- <input type="text"placeholder="search"[(ngModel)]="searchflower" (input)="search()"> -->
-</div>
+  <!-- <div *ngFor = "let item of flowers">{{item.name}}</div> -->
+  <div class="row clearfix">
+    <div class="col-lg-3 col-md-3 col-sm-7" *ngFor="let item of flowers">
+      <div class="card product_item">
+        <div class="body">
+          <div class="cp_img">
+            <img src="{{ item.img }}" alt="Product" class="img-fluid" />
+          </div>
 
-<!-- <div *ngFor = "let item of flowers">{{item.name}}</div> -->
-<div class="row clearfix">
-  <div class="col-lg-3 col-md-3 col-sm-7" *ngFor="let item of flowers">
-    <div class="card product_item">
-      <div class="body">
-        <div class="cp_img">
-          <img src="{{ item.img }}" alt="Product" class="img-fluid" />
-        </div>
-
-        <div class="product_details">
-          <h5>
-            <a href="">{{ item.name }}</a>
-          </h5>
-          <ul class="product_price list-unstyled">
-            <li class="old_price">Stock: {{ item.stock }}</li>
-            <li class="new_price">{{ item.price | currency: "USD":true }}</li>
-          </ul>
+          <div class="product_details">
+            <h5>
+              <a href="">{{ item.name }}</a>
+            </h5>
+            <ul class="product_price list-unstyled">
+              <li class="old_price">Stock: {{ item.stock }}</li>
+              <li class="new_price">{{ item.price | currency: "USD":true }}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<h1>Updating...</h1>

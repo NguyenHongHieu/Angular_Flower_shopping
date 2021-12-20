@@ -1,6 +1,9 @@
 <h3 class="text-center">
   <i class="fas fa-shopping-bag"></i> Your Bag Details
 </h3>
+<h5 class="text-center" style="color: yellowgreen;">
+  You should login to continue shopping!!!
+</h5>
 <div class="table-responsive" id="order_table">
   <table class="table table-bordered table-striped">
     <thead>
@@ -52,6 +55,7 @@
   </div>
   <!-- Modal -->
   <div
+   *ngIf="user"
     class="modal"
     id="exampleModalCenter"
     tabindex="-1"

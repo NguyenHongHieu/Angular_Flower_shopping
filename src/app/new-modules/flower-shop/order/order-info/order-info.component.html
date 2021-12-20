@@ -1,48 +1,47 @@
 <h3 class="text-center">
-    <i class="fas fa-shopping-bag"></i> Your Bag Details
-  </h3>
-  <div class="table-responsive" id="order_table">
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th width="40%">Product Name</th>
-          <th width="10%">Quantity</th>
-          <th width="20%">Price</th>
-          <th width="15%">Total</th>
-          <th width="5%">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of flowerBuys">
-          <td>{{ item.name }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.price | currency: "USD":true }}</td>
-          <td>{{ item.quantity * item.price | currency: "USD":true }}</td>
-          <td>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="3" align="right">Total</td>
-          <td colspan="2">
-            {{ flowerBuys | calculateTotal | currency: "USD":true }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div style="padding-bottom: 3%">
-      <button
-        type="button"
-        class="btn btn-dark"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-        value="order"
-        name="order"
-        [disabled]="flowerBuys.length == 0"
-      >
-        Order Now
-      </button>
-    </div>
-<div
+  <i class="fas fa-shopping-bag"></i> Your Bag Details
+</h3>
+<div class="table-responsive" id="order_table">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="40%">Product Name</th>
+        <th width="10%">Quantity</th>
+        <th width="20%">Price</th>
+        <th width="15%">Total</th>
+        <th width="5%">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of flowerBuys">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency: "USD":true }}</td>
+        <td>{{ item.quantity * item.price | currency: "USD":true }}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right">Total</td>
+        <td colspan="2">
+          {{ flowerBuys | calculateTotal | currency: "USD":true }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding-bottom: 3%">
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      value="order"
+      name="order"
+      [disabled]="flowerBuys.length == 0"
+    >
+      Order Now
+    </button>
+  </div>
+  <div
     class="modal"
     id="exampleModalCenter"
     tabindex="-1"
@@ -117,3 +116,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -20,13 +20,12 @@ export class OrderListComponent implements OnInit {
 
   total(flowers: Flower[]) {
     let sum = 0;
-    flowers.map((a) => sum += a.price * a.quantity);
+    flowers.map((a) => (sum += a.price * a.quantity));
     return sum;
     // return flowers.reduce((c,n)=>[...c,n.price],[]);
-   // return flowers.reduce((accumulator, item) => sum += item.price)
-    
+    // return flowers.reduce((accumulator, item) => sum += item.price)
   }
-  
+
   // total2(){
   //   const orders = JSON.parse(localStorage.getItem('orders')) || [];
   //   if(!!orders.lenght) {

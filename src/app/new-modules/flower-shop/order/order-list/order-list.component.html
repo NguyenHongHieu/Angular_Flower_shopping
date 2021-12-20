@@ -17,16 +17,9 @@
         </ul>
       </td>
       <!-- <td>{{ item.total}}</td> -->
-      <td>{{ total(item.flowers)}}</td>
+      <td>{{ total(item.flowers) }}</td>
       <!-- <td>500</td> -->
       <td>
-        <!-- <button
-          type="button"
-          name="remove_product"
-          class="btn btn-primary btn-xs"
-        >
-          View Detail
-        </button> -->
         <a class="btn btn-primary" [href]="'order-detail/' + item.id">
           View Detail
         </a>

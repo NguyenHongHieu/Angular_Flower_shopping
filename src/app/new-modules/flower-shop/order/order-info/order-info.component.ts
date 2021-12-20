@@ -11,44 +11,47 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-order-info',
   templateUrl: './order-info.component.html',
-  styleUrls: ['./order-info.component.css']
+  styleUrls: ['./order-info.component.css'],
 })
 export class OrderInfoComponent implements OnInit {
-  public bags : number[]=[];
-  public flowerBuys : Flower[] = [];
-  public counts : any = {};
-  public user : User = null;
+  public bags: number[] = [];
+  public flowerBuys: Flower[] = [];
+  public counts: any = {};
+  public user: User = null;
 
   constructor(
-    private _flowerService : FlowerService,
-    private _toastService : CallToastService,
-    private _userService : UserService,
-    private _orderService : OrderService,
-    private _routerService : Router
-  ) { }
+    private _flowerService: FlowerService,
+    private _toastService: CallToastService,
+    private _userService: UserService,
+    private _orderService: OrderService,
+    private _routerService: Router
+  ) {}
 
   ngOnInit(): void {
     this.getBag();
-    var id = +JSON.parse(localStorage.getItem("user"));
+    var id = +JSON.parse(localStorage.getItem('user'));
     this.user = this._userService.findUserById(id);
   }
-   async submitOrder(){
-    var order = new Order(0,this.user,this.flowerBuys);
+  async submitOrder() {
+    var order = new Order(0, this.user, this.flowerBuys);
     var orderId = this._orderService.addNew(order);
-    localStorage.removeItem("bags");
-    this._routerService.navigate([`order-detail/${orderId}`]).then(() => window.location.reload());
+    localStorage.removeItem('bags');
+    this._routerService
+      .navigate([`order-detail/${orderId}`])
+      .then(() => window.location.reload());
   }
-  getBag() : void{
+  getBag(): void {
     this.flowerBuys = [];
     this.counts = {};
-    this.bags = JSON.parse(localStorage.getItem("bags")) || [];
-    this.bags.forEach( (x) => { this.counts[x] = (this.counts[x] || 0) + 1; });
+    this.bags = JSON.parse(localStorage.getItem('bags')) || [];
+    this.bags.forEach((x) => {
+      this.counts[x] = (this.counts[x] || 0) + 1;
+    });
 
-    Object.entries(this.counts).forEach(([key,value]) => {
-        var flower = this._flowerService.getFlowerById(+key);
-        flower.quantity = +value;
-        this.flowerBuys.push(flower);
-    })
-}
-
+    Object.entries(this.counts).forEach(([key, value]) => {
+      var flower = this._flowerService.getFlowerById(+key);
+      flower.quantity = +value;
+      this.flowerBuys.push(flower);
+    });
+  }
 }
