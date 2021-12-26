@@ -29,7 +29,7 @@ export class BagComponent implements OnInit {
     private _orderService: OrderService,
     private _bagService: BagService,
     private _routerService: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getBag();
@@ -47,36 +47,17 @@ export class BagComponent implements OnInit {
   }
 
   removeFlowerInBag(idFlower: number) {
-    this.bags = this.bags.filter((x) => x != idFlower);
-    localStorage.setItem('bags', JSON.stringify(this.bags));
-
-    this._toastService.success(`Delete success !`, 2000);
+    this._bagService.delete(idFlower);
     this.getBag();
-  }
+    // this.bags = this.bags.filter((x) => x != idFlower);
+    // localStorage.setItem('bags', JSON.stringify(this.bags));
+    // this._toastService.success(`Delete success !`, 2000);
 
+  }
   getBag(): void {
-    this.bagData = this._bagService.getBagData();
-    //UI
-    this.flowerBuys = [];
-    this.counts = {};
-
-    //old
-    // this.bags = JSON.parse(localStorage.getItem('bags')) || [];
-    // this.bags.forEach((x) => {
-    //   this.counts[x] = (this.counts[x] || 0) + 1;
-    // });
-    
-    this.bagData.forEach((x) => {
-      this.counts[`${x}`] = (this.counts[`${x}`] || 0) + 1;
-    });
-
-    
-    Object.entries(this.counts).forEach(([key, value]) => {
-      var flower = this._flowerService.getFlowerById(+key);
-      flower.quantity = +value;
-      this.flowerBuys.push(flower);
-    });
+    this.flowerBuys = this._bagService.getFlowerBuys();
   }
+
   disabledOrder(): boolean {
     // var id = +JSON.parse(localStorage.getItem('user'));
     // var user = this._userService.findUserById(id);
@@ -85,4 +66,29 @@ export class BagComponent implements OnInit {
     }
     return true;
   }
+
+  //moved on service
+  // getBag(): void {
+  //   this.bagData = this._bagService.getBagData();
+  //   //UI
+  //   this.flowerBuys = [];
+  //   this.counts = {};
+
+  //   //old
+  //   // this.bags = JSON.parse(localStorage.getItem('bags')) || [];
+  //   // this.bags.forEach((x) => {
+  //   //   this.counts[x] = (this.counts[x] || 0) + 1;
+  //   // });
+
+  //   this.bagData.forEach((x) => {
+  //     this.counts[`${x}`] = (this.counts[`${x}`] || 0) + 1;
+  //   });
+
+
+  //   Object.entries(this.counts).forEach(([key, value]) => {
+  //     var flower = this._flowerService.getFlowerById(+key);
+  //     flower.quantity = +value;
+  //     this.flowerBuys.push(flower);
+  //   });
+  // }
 }
