@@ -6,18 +6,7 @@ export class User{
   public phone : string;
   public isOwner : boolean;
 
-  constructor(id: number,
-    name: string,
-    username : string,
-    password : string,
-    phone: string,
-    isOwner : boolean) {
-
-    this.id = id;
-    this.name = name;
-    this.phone = phone;
-    this.isOwner = isOwner;
-    this.username = username;
-    this.password = password;
-  }
+  public constructor(init?: Partial<User>) {
+		Object.assign(this, init);
+	}
 }

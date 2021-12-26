@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FlowerService } from 'src/app/shared/services/flower.service';
 import { Flower } from '../../../models/flower.class';
-import { FlowerService } from '../../../../services/flower.service';
 
 @Component({
   selector: 'app-products',

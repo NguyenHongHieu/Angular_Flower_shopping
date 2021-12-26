@@ -1,9 +1,6 @@
 <h3 class="text-center">
   <i class="fas fa-shopping-bag"></i> Your Bag Details
 </h3>
-<h5 class="text-center" style="color: yellowgreen;">
-  You should login to continue shopping!!!
-</h5>
 <div class="table-responsive" id="order_table">
   <table class="table table-bordered table-striped">
     <thead>
@@ -21,16 +18,7 @@
         <td>{{ item.quantity }}</td>
         <td>{{ item.price | currency: "USD":true }}</td>
         <td>{{ item.quantity * item.price | currency: "USD":true }}</td>
-        <td>
-          <button
-            (click)="removeFlowerInBag(item.id)"
-            type="button"
-            name="remove_product"
-            class="btn btn-danger btn-xs"
-          >
-            Remove
-          </button>
-        </td>
+        <td></td>
       </tr>
       <tr>
         <td colspan="3" align="right">Total</td>
@@ -48,14 +36,12 @@
       data-target="#exampleModalCenter"
       value="order"
       name="order"
-      [disabled]="disabledOrder()"
+      [disabled]="flowerBuys.length == 0"
     >
       Order Now
     </button>
   </div>
-  <!-- Modal -->
   <div
-   *ngIf="user"
     class="modal"
     id="exampleModalCenter"
     tabindex="-1"

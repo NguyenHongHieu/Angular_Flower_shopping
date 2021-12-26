@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
-import { User } from '../new-modules/models/user.class';
+import { User } from '../../new-modules/models/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   public users : User[] =[
-    new User(1,"Hieu","user1","123","0777903474",false),
-    new User(2,"Owner","owner1","123","0345265550",true),
+    new User({
+      id:1,
+      name:"Hieu",
+      username:"user1",
+      password:"123",
+      phone:"0777903474",
+      isOwner:false
+    }),
+    new User({
+      id:2,
+      name:"Owner",
+      username:"owner1",
+      password:"123",
+      phone:"0345265550",
+      isOwner:true
+    }),
   ];
   constructor() { }
 

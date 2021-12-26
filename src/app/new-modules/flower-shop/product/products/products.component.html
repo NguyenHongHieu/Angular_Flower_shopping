@@ -5,18 +5,14 @@
         <div class="cp_img">
           <img src="{{ item.img }}" alt="Product" class="img-fluid" />
           <div class="hover">
-            <button
-              type="button"
-              class="btn btn-primary btn-sm waves-effect"
-              (click)="updateBag(item.id)"
-            >
+            <button type="button" class="btn btn-primary btn-sm waves-effect" (click)="updateBag(item.id)">
               <i class="zmdi zmdi-shopping-cart"></i>
             </button>
           </div>
         </div>
         <div class="product_details">
           <h5>
-            <a href="ec-product-detail.html">{{ item.name }}</a>
+            <a [href]="'view-detail/' + item.id">{{ item.name }}</a>
           </h5>
           <ul class="product_price list-unstyled">
             <li class="old_price">Stock: {{ item.stock }}</li>

@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Order } from '../../../models/order.class';
-import { OrderService } from '../../../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-// import { Flower } from 'src/app/new-modules/models/flower.class';
 import { Flower } from '../../../models/flower.class';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-order-detail',
