@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _flowerService: FlowerService,
     private _toastService: CallToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.bags = JSON.parse(localStorage.getItem('bags')) || [];

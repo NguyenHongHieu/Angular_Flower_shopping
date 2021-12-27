@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
 import { OwnerGuard } from './new-modules/admin/user/guards/owner.guards';
 import { UserGuard } from './new-modules/admin/user/guards/user.guard';
 import { OrderInfoComponent } from './new-modules/flower-shop/order/order-info/order-info.component';
-
+import { ProductModule } from './new-modules/flower-shop/product/product.module';
 const appRoutes: Routes = [
   {
     path: '',
@@ -44,6 +44,8 @@ const appRoutes: Routes = [
   {
     path: 'product-list',
     component: ProductListComponent,
+    loadChildren: () =>
+      import('./new-modules/flower-shop/product/product.module').then((m) => m.ProductModule),
   },
   {
     path: 'view-detail/:id',
@@ -110,4 +112,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

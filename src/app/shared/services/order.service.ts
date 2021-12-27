@@ -1,51 +1,51 @@
 import { Injectable } from '@angular/core';
-import { Flower } from '../../new-modules/models/flower.class';
-import { Order } from '../../new-modules/models/order.class';
-import { User } from '../../new-modules/models/user.class';
+import { FlowerModel } from '../../new-modules/models/flower.class';
+import { OrderModel } from '../../new-modules/models/order.class';
+import { UserModel } from '../../new-modules/models/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  
-  isOwner:true
-  private user = new User({
-    id:3,
-    name:"Hieu",
-    username:"Hieu",
-    password:"123",
-    phone:"0345265550",
-    isOwner:true
+
+  isOwner: true
+  private user = new UserModel({
+    id: 3,
+    name: "Hieu",
+    username: "Hieu",
+    password: "123",
+    phone: "0345265550",
+    isOwner: true
   });
   private flowers = [
-    new Flower(1, 'Rose', 15, 2, 'https://bit.ly/3tFtFSJ'),
-    new Flower(2, 'Confetti', 10, 1, 'https://bit.ly/3tKs65I')
+    new FlowerModel(1, 'Rose', 15, 2, 'https://bit.ly/3tFtFSJ'),
+    new FlowerModel(2, 'Confetti', 10, 1, 'https://bit.ly/3tKs65I')
   ];
 
-  private orders : Order[] = [
-    new Order(1,this.user,this.flowers),
+  private orders: OrderModel[] = [
+    new OrderModel(1, this.user, this.flowers),
   ];
   constructor() {
-    var orderRepo = JSON.parse(localStorage.getItem("orders")) as Order[];
-     if(orderRepo) this.orders = orderRepo;
-     else localStorage.setItem("orders", JSON.stringify(this.orders));
+    var orderRepo = JSON.parse(localStorage.getItem("orders")) as OrderModel[];
+    if (orderRepo) this.orders = orderRepo;
+    else localStorage.setItem("orders", JSON.stringify(this.orders));
   }
 
-  getId(arr : Order[]){
-    return Math.max.apply(Math, arr.map(function(o) { return o.id; })) + 1;
+  getId(arr: OrderModel[]) {
+    return Math.max.apply(Math, arr.map(function (o) { return o.id; })) + 1;
   }
 
-  addNew(order : Order){
+  addNew(order: OrderModel) {
     order.id = this.getId(this.orders);
     this.orders.push(order);
     this.updateDbLocal();
     return order.id;
   }
 
-  findOrderById(id : number){
+  findOrderById(id: number) {
     return this.orders.find(x => x.id === id);
   }
-  updateDbLocal(){
+  updateDbLocal() {
     localStorage.setItem("orders", JSON.stringify(this.orders));
   }
 }

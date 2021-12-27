@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Flower } from 'src/app/new-modules/models/flower.class';
-import { Order } from 'src/app/new-modules/models/order.class';
-import { User } from 'src/app/new-modules/models/user.class';
+import { FlowerModel } from 'src/app/new-modules/models/flower.class';
+import { OrderModel } from 'src/app/new-modules/models/order.class';
+import { UserModel } from 'src/app/new-modules/models/user.class';
 import { CallToastService } from 'src/app/shared/services/call-toast.service';
 import { FlowerService } from 'src/app/shared/services/flower.service';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -15,9 +15,9 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class OrderInfoComponent implements OnInit {
   public bags: number[] = [];
-  public flowerBuys: Flower[] = [];
+  public flowerBuys: FlowerModel[] = [];
   public counts: any = {};
-  public user: User = null;
+  public user: UserModel = null;
 
   constructor(
     private _flowerService: FlowerService,
@@ -25,7 +25,7 @@ export class OrderInfoComponent implements OnInit {
     private _userService: UserService,
     private _orderService: OrderService,
     private _routerService: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getBag();
@@ -33,7 +33,7 @@ export class OrderInfoComponent implements OnInit {
     this.user = this._userService.findUserById(id);
   }
   async submitOrder() {
-    var order = new Order(0, this.user, this.flowerBuys);
+    var order = new OrderModel(0, this.user, this.flowerBuys);
     var orderId = this._orderService.addNew(order);
     localStorage.removeItem('bags');
     this._routerService

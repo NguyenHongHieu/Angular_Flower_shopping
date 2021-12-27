@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { User } from '../../new-modules/models/user.class';
-import { User } from '../../models/user.class';
+import { UserModel } from '../../models/user.class';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -11,11 +11,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class HeaderComponent implements OnInit {
   public title: string = "Hieu's Shop";
-  public user: User = null;
+  public user: UserModel = null;
   constructor(
     private _userService: UserService,
     private _routerService: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     var id = +JSON.parse(localStorage.getItem('user'));

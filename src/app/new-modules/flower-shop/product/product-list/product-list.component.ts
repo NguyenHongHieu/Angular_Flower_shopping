@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CallToastService } from 'src/app/shared/services/call-toast.service';
 import { FlowerService } from 'src/app/shared/services/flower.service';
-import { Flower } from '../../../models/flower.class';
+import { FlowerModel } from '../../../models/flower.class';
 
 @Component({
   selector: 'app-product-list',
@@ -9,13 +9,13 @@ import { Flower } from '../../../models/flower.class';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  public flowers: Flower[] = [];
+  public flowers: FlowerModel[] = [];
   public bags: number[] = [];
   public name: string;
   constructor(
     private _flowerService: FlowerService,
     private _toastService: CallToastService
-  ) {}
+  ) { }
   @Output('idFlower')
   onHandleBags = new EventEmitter<number>();
   ngOnInit(): void {

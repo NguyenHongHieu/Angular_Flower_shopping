@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Flower } from 'src/app/new-modules/models/flower.class';
-import { Order } from 'src/app/new-modules/models/order.class';
+import { FlowerModel } from 'src/app/new-modules/models/flower.class';
+import { OrderModel } from 'src/app/new-modules/models/order.class';
 import { __values } from 'tslib';
 
 @Component({
@@ -9,16 +9,16 @@ import { __values } from 'tslib';
   styleUrls: ['./order-list.component.css'],
 })
 export class OrderListComponent implements OnInit {
-  constructor() {}
+  constructor() { }
   // totalPrice: number;
-  public orders: Order[];
+  public orders: OrderModel[];
 
   ngOnInit(): void {
     this.orders = JSON.parse(localStorage.getItem('orders')) || [];
     console.log(this.orders);
   }
 
-  total(flowers: Flower[]) {
+  total(flowers: FlowerModel[]) {
     let sum = 0;
     flowers.map((a) => (sum += a.price * a.quantity));
     return sum;

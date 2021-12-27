@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Order } from '../../../models/order.class';
+import { OrderModel } from '../../../models/order.class';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Flower } from '../../../models/flower.class';
+import { FlowerModel } from '../../../models/flower.class';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
@@ -11,14 +11,14 @@ import { OrderService } from 'src/app/shared/services/order.service';
   styleUrls: ['./order-detail.component.css'],
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
-  public order: Order = null;
+  public order: OrderModel = null;
   public subscription: Subscription;
-  public flowers: Flower[];
+  public flowers: FlowerModel[];
 
   constructor(
     private _activateRouteService: ActivatedRoute,
     private _orderService: OrderService
-  ) {}
+  ) { }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Flower } from '../../models/flower.class';
-import { User } from '../../models/user.class';
-import { Order } from '../../models/order.class';
+import { FlowerModel } from '../../models/flower.class';
+import { UserModel } from '../../models/user.class';
+import { OrderModel } from '../../models/order.class';
 import { Router } from '@angular/router';
 import { FlowerService } from 'src/app/shared/services/flower.service';
 import { CallToastService } from 'src/app/shared/services/call-toast.service';
@@ -17,9 +17,9 @@ import { BagModel } from '../../models/bag.model';
 })
 export class BagComponent implements OnInit {
   public bags: number[] = [];
-  public flowerBuys: Flower[] = [];
+  public flowerBuys: FlowerModel[] = [];
   public counts: any = {};
-  public user: User = null;
+  public user: UserModel = null;
   public bagData: BagModel[];
 
   constructor(
@@ -38,7 +38,7 @@ export class BagComponent implements OnInit {
   }
 
   async submitOrder() {
-    var order = new Order(0, this.user, this.flowerBuys);
+    var order = new OrderModel(0, this.user, this.flowerBuys);
     var orderId = this._orderService.addNew(order);
     localStorage.removeItem('bags');
     this._routerService

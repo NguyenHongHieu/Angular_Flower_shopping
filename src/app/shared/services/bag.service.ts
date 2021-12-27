@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BagModel } from 'src/app/new-modules/models/bag.model';
-import { Flower } from 'src/app/new-modules/models/flower.class';
+import { FlowerModel } from 'src/app/new-modules/models/flower.class';
 import { FlowerService } from './flower.service';
 
 @Injectable({ providedIn: 'root' })
@@ -51,7 +51,7 @@ export class BagService {
     getFlowerBuys() {
         const bagData = this.getBagData();
         const counts: any = {}
-        const flowerBuys: Flower[] = [];
+        const flowerBuys: FlowerModel[] = [];
 
         bagData.forEach((x) => {
             counts[`${x}`] = (counts[`${x}`] || 0) + 1;

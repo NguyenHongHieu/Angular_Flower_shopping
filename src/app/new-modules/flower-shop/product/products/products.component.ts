@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FlowerService } from 'src/app/shared/services/flower.service';
-import { Flower } from '../../../models/flower.class';
+import { FlowerModel } from '../../../models/flower.class';
 
 @Component({
   selector: 'app-products',
@@ -8,13 +8,13 @@ import { Flower } from '../../../models/flower.class';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  public flowers: Flower[] = [];
+  public flowers: FlowerModel[] = [];
   public bags: number[] = [];
 
   @Output('idFlower')
   onHandleBags = new EventEmitter<number>();
 
-  constructor(private _flowerService: FlowerService) {}
+  constructor(private _flowerService: FlowerService) { }
 
   ngOnInit(): void {
     this.flowers = this._flowerService.getAllFlower();
