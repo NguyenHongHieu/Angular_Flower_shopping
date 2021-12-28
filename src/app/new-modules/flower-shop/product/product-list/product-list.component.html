@@ -8,32 +8,29 @@
 <!-- <div *ngFor = "let item of flowers">{{item.name}}</div> -->
 <div class="row clearfix">
   <div class="col-lg-3 col-md-3 col-sm-7" *ngFor="let item of flowers">
-    <a [href]="'products/' + item.id">
-      <div class="card product_item">
-        <div class="body">
-          <div class="cp_img">
-            <img src="{{ item.img }}" alt="Product" class="img-fluid" />
-          </div>
+    <div class="card product_item">
+      <div class="body">
+        <div class="cp_img">
+          <img src="{{ item.img }}" alt="Product" class="img-fluid" />
+        </div>
 
-          <div class="product_details">
-            <h5>
-              <!-- <a [href]="'products/' + item.id">{{ item.name }}</a> -->
-              <p>{{ item.name }}</p>
-            </h5>
-            <ul class="product_price list-unstyled">
-              <li class="old_price">Stock: {{ item.stock }}</li>
-              <li class="new_price">{{ item.price | currency: "USD":true }}</li>
-            </ul>
+        <div class="product_details">
+          <h5>
+            <a [href]="'products/' + item.id">{{ item.name }}</a>
+          </h5>
+          <ul class="product_price list-unstyled">
+            <li class="old_price">Stock: {{ item.stock }}</li>
+            <li class="new_price">{{ item.price | currency: "USD":true }}</li>
+          </ul>
 
-            <div class="hover">
-              <button type="button" class="btn btn-primary btn-sm waves-effect" (click)="updateBag(item.id)">
-                shopping bag
-                <i class="zmdi zmdi-shopping-cart"></i>
-              </button>
-            </div>
+          <div class="hover">
+            <button type="button" class="btn btn-primary btn-sm waves-effect" (click)="updateBag(item.id)">
+              shopping bag
+              <i class="zmdi zmdi-shopping-cart"></i>
+            </button>
           </div>
         </div>
       </div>
-    </a>
+    </div>
   </div>
 </div>

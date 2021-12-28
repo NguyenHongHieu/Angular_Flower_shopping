@@ -2,10 +2,15 @@ import { FlowerModel } from "./flower.class";
 import { UserModel } from "./user.class";
 
 export class OrderModel {
-  public id: number;
-  public name: string;
-  public user: UserModel;
-  public flowers: FlowerModel[];
+  public id: number; //id order
+  public name: string; // name order
+  public user: UserModel; //information Customer
+  //CustomerName:string
+  public flowers: FlowerModel[];// information Flower
+  //FlowerName: string
+  public quantity: string; //define
+  totalAmount: number; //define
+  status: string // delivery,...
 
   constructor(id?: number, user?: UserModel, flowers?: FlowerModel[]) {
     this.id = id;

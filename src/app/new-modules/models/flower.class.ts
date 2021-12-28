@@ -4,7 +4,8 @@ export class FlowerModel {
   public price: number;
   public img: string;
   public stock: number;
-  public quantity: number = 0;
+  public quantity: number = 0;//define for UI product detail
+  public description: string;// define for UI product detail
 
   constructor(id: number, name: string, price: number, stock: number, img: string) {
     this.id = id;

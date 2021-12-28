@@ -3,4 +3,5 @@ export class BagModel {
     flowerName: string;
     quantity: number;
     price: number;
+    total: number;// can calculate
 }
