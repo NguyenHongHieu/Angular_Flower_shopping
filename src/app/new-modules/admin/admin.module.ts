@@ -21,4 +21,4 @@ const routes: Routes = [
   exports: [],
   providers: [],
 })
-export class AdminModule {}
+export class AdminModule { }

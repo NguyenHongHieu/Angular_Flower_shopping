@@ -37,7 +37,7 @@ export class OrderInfoComponent implements OnInit {
     var orderId = this._orderService.addNew(order);
     localStorage.removeItem('bags');
     this._routerService
-      .navigate([`order-detail/${orderId}`])
+      .navigate([`orders/${orderId}`])
       .then(() => window.location.reload());
   }
   getBag(): void {

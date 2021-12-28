@@ -1,8 +1,6 @@
 <div class="text-center font-weight-bold mb-5">
   <h1 class="text-primary">!WELCOME TO MY SHOP!</h1>
   <i class="fas fa-shopping-bag"></i>
-  <a [routerLink]="['/bag']" routerLinkActive="router-link-active"
-    >YOUR BAG : {{ bags.length }}</a
-  >
+  <a [routerLink]="['/bag']" routerLinkActive="router-link-active">YOUR BAG : {{ bags.length }}</a>
 </div>
 <app-products (idFlower)="onGetBagIds($event)"></app-products>

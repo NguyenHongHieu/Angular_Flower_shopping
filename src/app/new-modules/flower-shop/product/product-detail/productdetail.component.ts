@@ -6,10 +6,10 @@ import { FlowerService } from 'src/app/shared/services/flower.service';
 import { FlowerModel } from '../../../models/flower.class';
 @Component({
   selector: 'app-view-detail',
-  templateUrl: './view-detail.component.html',
-  styleUrls: ['./view-detail.component.css'],
+  templateUrl: './productdetail.component.html',
+  styleUrls: ['./productdetail.component.css'],
 })
-export class ViewDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
   public flowers: FlowerModel[] = [];
   public subscription: Subscription;
   public product: FlowerModel = null;

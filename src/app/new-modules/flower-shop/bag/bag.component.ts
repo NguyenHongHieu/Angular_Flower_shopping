@@ -42,7 +42,7 @@ export class BagComponent implements OnInit {
     var orderId = this._orderService.addNew(order);
     localStorage.removeItem('bags');
     this._routerService
-      .navigate([`order-detail/${orderId}`])
+      .navigate([`orders/${orderId}`])
       .then(() => window.location.reload());
   }
 
@@ -55,6 +55,8 @@ export class BagComponent implements OnInit {
 
   }
   getBag(): void {
+    this.bagData = this._bagService.getBagData();
+
     this.flowerBuys = this._bagService.getFlowerBuys();
   }
 
