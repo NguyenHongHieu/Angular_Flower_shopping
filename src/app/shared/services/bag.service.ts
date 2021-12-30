@@ -5,64 +5,105 @@ import { FlowerService } from './flower.service';
 
 @Injectable({ providedIn: 'root' })
 export class BagService {
-    BAG_STORAGE_KEY: string = "bags";
+	BAG_STORAGE_KEY: string = "bags";
 
-    constructor(private _flowerService: FlowerService) { }
+	constructor(private _flowerService: FlowerService) { }
 
 
-    getBagTotalCount(): number {
-        var bags = this.getBagData();
-        return bags.length;
-    }
 
-    getBagData(): BagModel[] {
-        let bagJsonString = localStorage.getItem(this.BAG_STORAGE_KEY);
-        return JSON.parse(bagJsonString);
-    }
 
-    setBagData(data: BagModel[]) {
-        let bagJsonString = JSON.stringify(data || []);
-        localStorage.setItem(this.BAG_STORAGE_KEY, bagJsonString);
-    }
+	getBagJSON(): string {
+		return localStorage.getItem(this.BAG_STORAGE_KEY);
+	}
 
-    add(data: BagModel) {
-        const bagData = this.getBagData();
-        bagData.push(data);
-        this.setBagData(bagData);
-    }
+	parseIdsFlowerInBag(): number[] {
+		return JSON.parse(this.getBagJSON()) as number[] || [];
+	}
 
-    update(data: BagModel) {
-        const bagData = this.getBagData();
-        const currentData = bagData.find(b => b.flowerId === data.flowerId);
-        currentData.price = data.price;
-        currentData.quantity = data.quantity;
+	getBagFlowersData(): BagModel {
+		let idsFlowersBag = this.parseIdsFlowerInBag();
+		const fowners = this._flowerService.getFlowersByIds(idsFlowersBag);
 
-        this.setBagData(bagData);
-    }
+		return new BagModel({
+			flowers: fowners,
+		});
+	}
 
-    delete(flowerId: number) {
-        const bagData = this.getBagData();
-        // remove flower with id = flowerId in bagData
-        const currentData = bagData.filter((x) => +x !== flowerId);
+	getIdsFlowerInBag(bag: BagModel): number[] {
+		return bag.flowers.map(x => x.id);
+	}
 
-        this.setBagData(currentData);
-    }
+	setBagJSON(ids: number[]) {
+		let bagJsonString = JSON.stringify(ids);
+		localStorage.setItem(this.BAG_STORAGE_KEY, bagJsonString);
+	}
 
-    getFlowerBuys() {
-        const bagData = this.getBagData();
-        const counts: any = {}
-        const flowerBuys: FlowerModel[] = [];
+	add(idFlowers: number): boolean {
+		let idsFlower = this.parseIdsFlowerInBag();
+		idsFlower.push(idFlowers);
+		this.setBagJSON(idsFlower);
+		return true;
+	}
 
-        bagData.forEach((x) => {
-            counts[`${x}`] = (counts[`${x}`] || 0) + 1;
-        });
-        Object.entries(counts).forEach(([key, value]) => {
-            const flower = this._flowerService.getFlowerById(+key);
-            flower.quantity = +value;
-            flowerBuys.push(flower);
-        });
-        return flowerBuys;
-    }
+	update(data: BagModel) {
+	}
+
+	delete(flowerId: number) {
+		let idsFlower = this.parseIdsFlowerInBag();
+
+		const index = idsFlower.indexOf(flowerId);
+		if (index > -1) {
+			idsFlower.splice(index, 1);
+		}
+		this.setBagJSON(idsFlower);
+
+		return true;
+	}
+
+	getFlowerBuys() {
+		const bag = this.getBagFlowersData();
+
+
+
+		const bagData = this.getBagData();
+
+		const counts: any = {}
+		const flowerBuys: FlowerModel[] = [];
+		// const flowerBuys: BagModel[] = [];
+
+		bagData.forEach((x) => {
+			counts[`${x}`] = (counts[`${x}`] || 0) + 1;
+		});
+		Object.entries(counts).forEach(([key, value]) => {
+			const flower = this._flowerService.getFlowerById(+key);
+			flower.quantity = +value;
+			flowerBuys.push(flower);
+		});
+		return flowerBuys;
+	}
+	// getFlowerIntoBag() {
+	//     let bagData = this.getBagData();
+	//     let counts: any = {}
+	//     let flowerBag: FlowerModel[] = [];
+	//     // const flowerBuys: BagModel[] = [];
+
+	//     bagData.forEach((x) => {
+	//         counts[`${x}`] = (counts[`${x}`] || 0) + 1;
+	//     });
+	//     Object.entries(counts).forEach(([key, value]) => {
+	//         let ccc = this._flowerService.getFlowerById(+key);
+	//         ccc.quantity = +value;
+
+	//         const temp: FlowerModel = {
+	//             id:ccc.id,
+	//             name:ccc.name,
+
+
+	//         };
+	//         flowerBag.push(temp);
+	//     });
+	//     return flowerBag;
+	// }
 
 }
 

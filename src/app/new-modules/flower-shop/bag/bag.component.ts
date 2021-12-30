@@ -56,8 +56,8 @@ export class BagComponent implements OnInit {
   }
   getBag(): void {
     this.bagData = this._bagService.getBagData();
-
-    this.flowerBuys = this._bagService.getFlowerBuys();
+    console.log(this.bagData);
+    // this.flowerBuys = this._bagService.getFlowerBuys();
   }
 
   disabledOrder(): boolean {
