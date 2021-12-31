@@ -19,6 +19,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     private _activateRouteService: ActivatedRoute,
     private _orderService: OrderService
   ) { }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

@@ -10,7 +10,6 @@ import { __values } from 'tslib';
 })
 export class OrderListComponent implements OnInit {
   constructor() { }
-  // totalPrice: number;
   public orders: OrderModel[];
 
   ngOnInit(): void {
@@ -22,16 +21,7 @@ export class OrderListComponent implements OnInit {
     let sum = 0;
     flowers.map((a) => (sum += a.price * a.quantity));
     return sum;
-    // return flowers.reduce((c,n)=>[...c,n.price],[]);
-    // return flowers.reduce((accumulator, item) => sum += item.price)
   }
 
-  // total2(){
-  //   const orders = JSON.parse(localStorage.getItem('orders')) || [];
-  //   if(!!orders.lenght) {
-  //     orders.flowers.map( (element: Flower) => {
-  //       element.total =  element.price * element.quantity;
-  //     });
-  //   }
-  // }
+
 }

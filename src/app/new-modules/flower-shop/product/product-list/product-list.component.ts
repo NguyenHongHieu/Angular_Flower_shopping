@@ -1,7 +1,9 @@
+import { BagModel } from 'src/app/new-modules/models/bag.model';
+import { BagService } from 'src/app/shared/services/bag.service';
+import { FlowerModel } from 'src/app/new-modules/models/flower.class';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CallToastService } from 'src/app/shared/services/call-toast.service';
 import { FlowerService } from 'src/app/shared/services/flower.service';
-import { FlowerModel } from '../../../models/flower.class';
 
 @Component({
   selector: 'app-product-list',
@@ -10,10 +12,11 @@ import { FlowerModel } from '../../../models/flower.class';
 })
 export class ProductListComponent implements OnInit {
   public flowers: FlowerModel[] = [];
-  public bags: number[] = [];
+  public bags: BagModel = new BagModel({});
   public name: string;
   constructor(
     private _flowerService: FlowerService,
+    private _bagService: BagService,
     private _toastService: CallToastService
   ) { }
   @Output('idFlower')
@@ -23,18 +26,14 @@ export class ProductListComponent implements OnInit {
     this.flowers = this._flowerService.getAllFlower();
     console.log(this.flowers);
   }
-  updateBag(id: number): void {
-    // this.onHandleBags.emit(id);
-    var numberItem = this.bags.filter((x) => x == id).length;
-    var isOutOfStock = this._flowerService.IsOutOfStock(id, numberItem);
+  updateBag(flower: FlowerModel): void {
 
-    if (isOutOfStock) {
-      this._toastService.error('Exceeded', 2000);
-      return;
-    }
+    // if (isOutOfStock) {
+    //   this._toastService.error('Exceeded', 2000);
+    //   return;
+    // }
 
-    this.bags.push(id);
-    localStorage.setItem('bags', JSON.stringify(this.bags));
+    this._bagService.addFlowerToBag(flower);
     this._toastService.success('Added', 1000);
   }
 

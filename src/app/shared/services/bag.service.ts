@@ -1,109 +1,39 @@
+import { FlowerModel } from 'src/app/new-modules/models/flower.class';
 import { Injectable } from '@angular/core';
 import { BagModel } from 'src/app/new-modules/models/bag.model';
-import { FlowerModel } from 'src/app/new-modules/models/flower.class';
+import { BaseService } from './base-service.service';
 import { FlowerService } from './flower.service';
 
 @Injectable({ providedIn: 'root' })
 export class BagService {
 	BAG_STORAGE_KEY: string = "bags";
 
-	constructor(private _flowerService: FlowerService) { }
+	constructor(private _flowerService: FlowerService, private baseService: BaseService) { }
 
-
-
-
-	getBagJSON(): string {
-		return localStorage.getItem(this.BAG_STORAGE_KEY);
-	}
-
-	parseIdsFlowerInBag(): number[] {
-		return JSON.parse(this.getBagJSON()) as number[] || [];
-	}
-
-	getBagFlowersData(): BagModel {
-		let idsFlowersBag = this.parseIdsFlowerInBag();
-		const fowners = this._flowerService.getFlowersByIds(idsFlowersBag);
-
+	getBag() {
 		return new BagModel({
-			flowers: fowners,
+			flowers: this.baseService.get(this.BAG_STORAGE_KEY) as FlowerModel[]
 		});
 	}
 
-	getIdsFlowerInBag(bag: BagModel): number[] {
-		return bag.flowers.map(x => x.id);
-	}
+	addFlowerToBag(flower: FlowerModel) {
+		let flowersInBag = this.baseService.get(this.BAG_STORAGE_KEY) as FlowerModel[] || [];
 
-	setBagJSON(ids: number[]) {
-		let bagJsonString = JSON.stringify(ids);
-		localStorage.setItem(this.BAG_STORAGE_KEY, bagJsonString);
-	}
+		const indexFlowerExist = flowersInBag.findIndex(x => x.id == flower.id);
 
-	add(idFlowers: number): boolean {
-		let idsFlower = this.parseIdsFlowerInBag();
-		idsFlower.push(idFlowers);
-		this.setBagJSON(idsFlower);
-		return true;
-	}
-
-	update(data: BagModel) {
-	}
-
-	delete(flowerId: number) {
-		let idsFlower = this.parseIdsFlowerInBag();
-
-		const index = idsFlower.indexOf(flowerId);
-		if (index > -1) {
-			idsFlower.splice(index, 1);
+		if (flowersInBag && indexFlowerExist > -1) {
+			flowersInBag[indexFlowerExist].quantity += 1;
+			this.baseService.set(this.BAG_STORAGE_KEY, flowersInBag);
+			return;
 		}
-		this.setBagJSON(idsFlower);
 
-		return true;
+		flower.quantity += 1;
+		return this.baseService.post(this.BAG_STORAGE_KEY, flower);
 	}
 
-	getFlowerBuys() {
-		const bag = this.getBagFlowersData();
-
-
-
-		const bagData = this.getBagData();
-
-		const counts: any = {}
-		const flowerBuys: FlowerModel[] = [];
-		// const flowerBuys: BagModel[] = [];
-
-		bagData.forEach((x) => {
-			counts[`${x}`] = (counts[`${x}`] || 0) + 1;
-		});
-		Object.entries(counts).forEach(([key, value]) => {
-			const flower = this._flowerService.getFlowerById(+key);
-			flower.quantity = +value;
-			flowerBuys.push(flower);
-		});
-		return flowerBuys;
+	deleteFlowerFromBag(idFlower: number) {
+		return this.baseService.delete(this.BAG_STORAGE_KEY, idFlower);
 	}
-	// getFlowerIntoBag() {
-	//     let bagData = this.getBagData();
-	//     let counts: any = {}
-	//     let flowerBag: FlowerModel[] = [];
-	//     // const flowerBuys: BagModel[] = [];
-
-	//     bagData.forEach((x) => {
-	//         counts[`${x}`] = (counts[`${x}`] || 0) + 1;
-	//     });
-	//     Object.entries(counts).forEach(([key, value]) => {
-	//         let ccc = this._flowerService.getFlowerById(+key);
-	//         ccc.quantity = +value;
-
-	//         const temp: FlowerModel = {
-	//             id:ccc.id,
-	//             name:ccc.name,
-
-
-	//         };
-	//         flowerBag.push(temp);
-	//     });
-	//     return flowerBag;
-	// }
 
 }
 

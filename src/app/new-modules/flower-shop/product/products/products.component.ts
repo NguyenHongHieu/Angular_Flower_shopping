@@ -11,8 +11,8 @@ export class ProductsComponent implements OnInit {
   public flowers: FlowerModel[] = [];
   public bags: number[] = [];
 
-  @Output('idFlower')
-  onHandleBags = new EventEmitter<number>();
+  @Output()
+  onHandleBags = new EventEmitter<FlowerModel>();
 
   constructor(private _flowerService: FlowerService) { }
 
@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
     this.flowers = this._flowerService.getAllFlower();
     console.log(this.flowers);
   }
-  updateBag(id: number): void {
-    this.onHandleBags.emit(id);
+  updateBag(flower: FlowerModel): void {
+    this.onHandleBags.emit(flower);
   }
 }

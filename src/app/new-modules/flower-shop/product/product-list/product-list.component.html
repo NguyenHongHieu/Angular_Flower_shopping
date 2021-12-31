@@ -1,6 +1,6 @@
 <div class="text-center font-weight-bold mb-5">
   <i class="fas fa-shopping-bag"></i>
-  <a [routerLink]="['/bag']" routerLinkActive="router-link-active">YOUR BAG : {{ bags.length }}</a>
+  <a [routerLink]="['/bag']" routerLinkActive="router-link-active">YOUR BAG : {{ bags.flowers.length }}</a>
 </div>
 <div class="text-center mb-5">
   <input type="text" placeholder="search" [(ngModel)]="name" (input)="search()" />
@@ -24,7 +24,7 @@
           </ul>
 
           <div class="hover">
-            <button type="button" class="btn btn-primary btn-sm waves-effect" (click)="updateBag(item.id)">
+            <button type="button" class="btn btn-primary btn-sm waves-effect" (click)="updateBag(item)">
               shopping bag
               <i class="zmdi zmdi-shopping-cart"></i>
             </button>

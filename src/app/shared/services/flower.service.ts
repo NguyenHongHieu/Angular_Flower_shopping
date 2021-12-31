@@ -22,6 +22,7 @@ export class FlowerService {
 		if (flowerRepo) this.flowers = flowerRepo;
 		else localStorage.setItem("flowers", JSON.stringify(this.flowers));
 	}
+
 	getAllFlower(): FlowerModel[] {
 		return JSON.parse(localStorage.getItem("flowers")) as FlowerModel[];
 	}
@@ -30,10 +31,11 @@ export class FlowerService {
 		return this.flowers.find(x => x.id === idFlower);
 	}
 
-	IsOutOfStock(id: number, numberBuy: number): boolean {
+	IsOutOfStock(id: number): boolean {
 		var flower = this.flowers.find((x) => x.id === id);
-		return flower.stock - numberBuy <= 0;
+		return flower.stock <= 0;
 	}
+
 	findFlowersById(id: number): FlowerModel {
 		return this.flowers.find(x => x.id === id);
 	}
