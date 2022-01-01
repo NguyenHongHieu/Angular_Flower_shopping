@@ -22,7 +22,10 @@ export class ProductListComponent implements OnInit {
   @Output('idFlower')
   onHandleBags = new EventEmitter<number>();
   ngOnInit(): void {
-    this.bags = JSON.parse(localStorage.getItem('bags')) || [];
+    // this.bags = JSON.parse(localStorage.getItem('bags')) || [];
+    // this.flowers = this._flowerService.getAllFlower();
+    // console.log(this.flowers);
+
     this.flowers = this._flowerService.getAllFlower();
     console.log(this.flowers);
   }
