@@ -21,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
     private _flowerService: FlowerService,
     private _bagService: BagService,
     private _toastService: CallToastService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this._activateRouteService.params.subscribe((data) => {

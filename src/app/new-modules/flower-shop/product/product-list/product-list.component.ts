@@ -14,11 +14,12 @@ export class ProductListComponent implements OnInit {
   public flowers: FlowerModel[] = [];
   public bags: BagModel = new BagModel({});
   public name: string;
+  quantityInBag: number = 0;
   constructor(
     private _flowerService: FlowerService,
     private _bagService: BagService,
     private _toastService: CallToastService
-  ) { }
+  ) {}
   @Output('idFlower')
   onHandleBags = new EventEmitter<number>();
   ngOnInit(): void {
@@ -28,9 +29,9 @@ export class ProductListComponent implements OnInit {
 
     this.flowers = this._flowerService.getAllFlower();
     console.log(this.flowers);
+    this.getBag();
   }
   updateBag(flower: FlowerModel): void {
-
     // if (isOutOfStock) {
     //   this._toastService.error('Exceeded', 2000);
     //   return;
@@ -38,6 +39,13 @@ export class ProductListComponent implements OnInit {
 
     this._bagService.addFlowerToBag(flower);
     this._toastService.success('Added', 1000);
+    this.getBag();
+  }
+  getBag() {
+    this.quantityInBag = 0;
+    this.bags = this._bagService.getBag();
+    this.bags.flowers?.map((x) => (this.quantityInBag += x.quantity));
+    console.log(this.quantityInBag);
   }
 
   search() {
